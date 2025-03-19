@@ -1,11 +1,23 @@
-class Account:
-    def __init__(self, username, password, balance=0.0):
-        self._username = username
-        self._password = password
+"""
+This is banking system core module.
+It contains the Account class and its subclasses.
+The Account class is the parent class for the SavingsAccount and CheckingAccount classes.
+The Account class has the following methods:
+- login(username, password): Logs a user into their account.
+- deposit(amount): Deposits money into the account.
+- withdraw(amount): Withdraws money from the account.
+- get_balance(): Returns the account balance.
+- logout(): Logs a user out of their account.
+"""
+
+class Account: #Parent class
+    def __init__(self, username, password, balance=0.0): #Constructor
+        self._username = username #Encapsulation
+        self._password = password 
         self._balance = balance
     
     def login(self, username, password):
-        if self._username == username and self._password == password:
+        if self._username == username and self._password == password: #Ensure the username and password match
             print(f"Login successful! Welcome, {self._username}.")
             return True
         else:
@@ -31,7 +43,7 @@ class Account:
     def logout(self):
         print(f"{self._username} has logged out.")
 
-class SavingsAccount(Account):
+class SavingsAccount(Account): # Class for savings account
     def __init__(self, username, password, balance=0.0, interest_rate=0.03):
         super().__init__(username, password, balance)
         self._interest_rate = interest_rate
@@ -44,7 +56,7 @@ class SavingsAccount(Account):
     def account_type(self):
         return "Savings Account"
 
-class CheckingAccount(Account):
+class CheckingAccount(Account): #Class for checking account
     def __init__(self, username, password, balance=0.0, overdraft_limit=100):
         super().__init__(username, password, balance)
         self._overdraft_limit = overdraft_limit
@@ -61,6 +73,8 @@ class CheckingAccount(Account):
 
 # --- Account Creation ---
 print("Welcome to Start_Hub Innovation Bank!")
+print("Create an account to get started.")
+print("=======================================")
 username = input("Enter a username: ")
 password = input("Enter a password: ")
 
